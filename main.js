@@ -18,17 +18,23 @@ const loadVideo = (path) => {
 
 // Main function
 document.addEventListener('DOMContentLoaded', () => {
+    let video = null;
+    const init = async() => {
+        video =  await loadVideo('assets/anti-hero.mp4');
+        video.play();
+        video.pause();
+    }
     const start = async() => {
         const mindarThree = new window.MINDAR.IMAGE.MindARThree({
             container: document.body,
-            imageTargetSrc: './assets/anti-hero.mind',
+            imageTargetSrc: 'assets/anti-hero.mind',
             // uiScanning: "#scanning",
             // uiLoading: "no"
         });
         const {renderer, scene, camera} = mindarThree;
        
         console.log('video sebelum loaded');
-        const video = await loadVideo('./assets/anti-hero.mp4');
+        const video = await loadVideo('assets/anti-hero.mp4');
         console.log('video loaded');
 
         const texture = new THREE.VideoTexture(video);
@@ -62,6 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     start();
-    console.log('Target found');
+
+    const button = document.createElement("button");
+    button.textContent = "Start";
+    button.addEventListener("click", start);
+
+    document.body.appendChild(button);
 });
-console.log('end');
+// console.log('end');
