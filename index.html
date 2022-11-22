@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./main.css" />
+<!-- CDN Script--><script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image-three.prod.js"></script>
+<!-- <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/hiukim/mind-arx-js@1.1.5/dist/mindar-image.aframe.js"></script> -->
+
+
+<!-- AR Script-->
+<script src="./main.js"></script>
+
+</head>
+<body> 
+     <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>How to activate AR?</h2>
+              </div>
+              <div class="modal-body">
+                <!-- List-->
+                <p>
+                    <ol>
+                        <li>Scan the barcode given in the instruction card to open the page.</li>
+                        <li>Point your camera towards the area marked by the sticker. But don't forget to release the sticker, otherwise it won't work.</li>
+                        <li>Wait for a seconds and let the magic happen!</li>
+                    </ol>
+                </p>
+                <br/>
+                <!-- Information -->
+                <p class="info">
+                    Having trouble in activating AR? Tell us what you're struggling with <a href="#">here</a>, we're beyond happy to help!
+                </p>
+              </div>
+        </div>
+    </div>
+
+    <div class="logo">
+        <img src="./assets/logo.png"/>
+    </div>
+
+    <div class="top-control">
+        <button id="myBtn">&quest;</button>
+    </div>
+
+    <div class="notification-top-bar">
+        <p>Powered by <b>The Blissful Art</b> &nbsp;&nbsp;
+        <a href="#">Get Yours Now!</a>
+        </p>
+    </div>
+    <!-- <div id="scanning" class="hidden">
+        <div class="inner">
+            <img src="./assets/logo.png"/>
+            <div class="scanline"></div>
+        </div>
+    </div> -->
+
+    <div id="container"></div>
+    
+    </div>
+
+    <!-- Modal Script Start -->
+    <script src="./libs/modal.js"></script>
+</body>
+</html>
