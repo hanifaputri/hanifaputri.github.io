@@ -13,10 +13,12 @@
         document.addEventListener("DOMContentLoaded", function() {
             const sceneEl = document.querySelector('a-scene');
             const video = document.getElementById('ar-video');
+            const playBtn = document.getElementById('ar-play-btn');
+            
+            // video.pause();
 
             // arReady event triggered when ready
             sceneEl.addEventListener("arReady", (event) => {
-                // video.pause();
                 console.log("ar ready");
             });
             // detect target found
@@ -30,6 +32,11 @@
                 video.pause();
                 console.log("target lost");
             });
+
+            // playBtn.addEventListener('click', () => {
+            //     console.log("Clicked");
+            //     // playBtn.setAttribute('visible', false);
+            // });
             // arError event triggered when something went wrong. Mostly browser compatbility issue
             sceneEl.addEventListener("arError", (event) => {
             console.log("ar error");
@@ -87,25 +94,31 @@
 
     <!-- AR Start-->
     <!-- <div id="container"></div> -->
+    <!-- <video id="ar-video" loop="true" src="assets/anti-hero.mp4"></video> -->
+    
+    <!-- <div style="display:none"> -->
       <a-scene mindar-image="imageTargetSrc: assets/anti-hero.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-assets>
-            <img id="card" src="assets/anti-hero.mp4" />
+            <img id="card" src="assets/anti-hero.png" />
             <video id="ar-video" loop="true" src="assets/anti-hero.mp4"></video>
+            <img id="ar-play-btn-img" src="assets/play-button.png" />
         </a-assets>
   
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
   
         <a-entity mindar-image-target="targetIndex: 0">
-          <!-- <a-plane src="#card" position="0 0 0" rotation="0 0 0"></a-plane> -->
-          <!-- <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="0.005 0.005 0.005" src="#avatarModel"
-            animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
-          > -->
-          <!-- <a-video src="assets/anti-hero.mp4"></a-video> -->
-          <a-plane src="#card" position="0 0 0" rotation="0 0 0"></a-plane>
-          <a-entity geometry="primitive: plane" material="src: #ar-video"><a-entity>
+            <!-- <a-plane src="#card" position="0 0 0" rotation="0 0 0"></a-plane> -->
+            <!-- <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="0.005 0.005 0.005" src="#avatarModel"
+                animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
+            > -->
+            <a-plane src="#card" position="0 0 0" rotation="0 0 0"></a-plane>
+            <!-- <a-video src=#ar-video" webkit-playsinline playsinline></a-video> -->
+            <a-entity geometry="primitive: plane" material="src: #ar-video"></a-entity>
+            <!-- <a-image id="ar-play-btn" class="clickable" src="#ar-play-btn-img" alpha-test="1" position="0 0 0" height="0.2" width="0.2"> -->
         </a-entity>
       </a-scene>
-    
+    <!-- </div> -->
+
     </div>
 
     <!-- Modal Script Start -->
