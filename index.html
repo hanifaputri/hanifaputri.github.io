@@ -9,74 +9,10 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image-aframe.prod.js"></script>
    
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Initialize video before AR ready
-            const sceneEl = document.querySelector('a-scene');
-            // const arSystem = sceneEl.systems["mindar-image-system"];
-
-            const video = document.getElementById('ar-video');
-
-            // const btn = document.getElementById('test-btn');
-            const playBtn = document.getElementById('ar-play-btn');
-            
-            // video.pause();
-            // btn.addEventListener("click", () => {
-            //     arSystem.start();
-            //     console.log("AR Start");
-            // });
-            // arReady event triggered when ready
-            sceneEl.addEventListener("arReady", (event) => {
-                console.log("ar ready");
-            });
-            // detect target found
-
-            let isClicked = false;
-            sceneEl.addEventListener("targetFound", event => {
-                // video.play();
-                // arSystem.unpause(); // unpause AR and video
-                console.log("target found");
-
-                playBtn.addEventListener("click", () => {
-                    console.log("Clicked");
-                    video.play();
-                    playBtn.setAttribute('visible', false);
-                    isClicked = true;
-                });
-                console.log(isClicked);
-                if (isClicked){
-                    video.play();
-                }
-            });
-            // detect target lost
-            sceneEl.addEventListener("targetLost", event => {
-                video.pause();
-                // arSystem.pause(true);
-                console.log("target lost");
-            });
-            // arError event triggered when something went wrong. Mostly browser compatbility issue
-            
-            video.addEventListener('error', () => {
-                console.error(`Error loading: ${videoSrc}`);
-            });
-
-            sceneEl.addEventListener("arError", (event) => {
-                console.log("ar error");
-            });
-
-            // console.log(playBtn.className);
-
-            document.body.addEventListener("click", (e) => {
-                const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-                const mouseY = -1 * ((e.clientY / window.innerWidth) * 2 - 1);
-                const mouse = new THREE.Vector2(mouseX, mouseY);
-            });
-        });
-      </script>
+    <script src="main.js"></script>
 
 </head>
 <body> 
-     <!-- The Modal -->
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
@@ -103,7 +39,7 @@
     </div>
 
     <div class="logo">
-        <img src="assets/logo.png"/>
+        <img src="assets/logo-white.png"/>
     </div>
 
     <div class="top-control">
@@ -112,48 +48,23 @@
 
     <div class="notification-top-bar">
         <p>Powered by <b>The Blissful Art</b> &nbsp;&nbsp;
-        <a id="test-btn" href="#">Get Yours Now!</a>
+        <button id="test-btn"><a href="#">Get Yours Now!</a></button>
         </p>
     </div>
 
-    <!-- <div id="scanning" class="hidden">
-        <div class="inner">
-            <img src="./assets/logo.png"/>
-            <div class="scanline"></div>
-        </div>
-    </div> -->
-
-    <!-- AR Start-->
-    <!-- <div id="container"></div> -->
-    <!-- <video id="ar-video" loop="true" src="assets/anti-hero.mp4"></video> -->
-    
-    <!-- <div style="display:none"> -->
-      <a-scene mindar-image="imageTargetSrc: assets/anti-hero.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-scene mindar-image="imageTargetSrc: assets/anti-hero.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-assets>
-            <!-- <img id="card" src="assets/anti-hero.png" /> -->
             <video id="ar-video" loop="true" src="assets/anti-hero.mp4"></video>
             <img id="ar-play-btn-img" src="assets/play-button.png" />
         </a-assets>
-  
+
         <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: ${customFields.libVersion}; objects: .clickable"></a-camera>
 
         <a-entity mindar-image-target="targetIndex: 0">
-            <!-- <a-plane src="#card" position="0 0 0" rotation="0 0 0"></a-plane> -->
-            <!-- <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="0.005 0.005 0.005" src="#avatarModel"
-                animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
-            > -->
-            <!-- <a-plane src="#card" position="0 0 0" rotation="0 0 0"></a-plane> -->         
             <a-video id="ar-video-link" src="#ar-video" webkit-playsinline playsinline material geometry></a-video>
-            <!-- <a-entity geometry="primitive: plane" material="src: #ar-video-src"></a-entity> -->
             <a-image id="ar-play-btn" class="clickable" src="#ar-play-btn-img" alpha-test="1" position="0 0 0" height="0.2" width="0.2" material geometry></a-image>
-            <!-- <a-plane id="ar-play-btn" class="clickable" src="#ar-play-btn-img"></a-plane> -->
         </a-entity>
-      </a-scene>
-
-
-    <!-- </div> -->
-
-    </div>
+    </a-scene>
 
     <!-- Modal Script Start -->
     <script src="libs/modal.js"></script>

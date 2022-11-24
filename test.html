@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css" />    
+    
+    <!-- AR Script -->
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image.prod.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image-aframe.prod.js"></script>
+   
+    <script>
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     alert("hehe");
+        // });
+    </script>
+    <style>
+        body {
+            margin:0;
+            font-family: sans-serif;
+        }
+        .ar-icon-container {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* border: 0px solid #000; */
+        }
+
+        .ar-icon-container > img {
+            width:50%;
+            height:50%;
+            opacity: 0.5;
+        }
+
+        .ar-icon-img {
+            position: absolute;
+            bottom:0;
+            left:0;
+            width: 100px;
+            height: 100px;
+            animation: move 4s infinite;
+            animation-timing-function: ease-in-out;
+        }
+
+        .ar-icon-img img {
+            width:100%;
+            height:100%;
+            object-fit: cover;
+        }
+
+        @keyframes move {
+            0%      {transform: translate(0, 0);}
+            33%     {transform: translate(50%, -100%);}
+            67%     {transform: translate(100%, 0);}
+            100%    {transform: translate(0, 0);}
+        }
+
+        .onboarding-popup {
+            /* display: none; */
+            position: fixed;
+            z-index:99;
+            width:100%;
+            height:100%;
+            left:0;
+            top:0;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .onboarding-popup-content {
+            position:relative;
+            top:15vh;
+            max-width:500px;
+            margin:0 auto;
+            height: 100%;
+            padding: 24px;
+            /* flex-wrap: wrap; */
+        }
+        .onboarding-popup-content > div {
+            margin:0 auto;
+        }
+        .onboarding-popup-content h3 {
+            text-align: center;
+            line-height: 1.2rem;
+            color: #fff;
+        }
+        .onboarding-popup-content p {
+            text-align: center;
+            line-height: 1.25rem;
+            color: #ccc;
+        }
+
+        .onboarding-popup-btn {
+            position: relative;
+            width:100%;
+            background: #646464;
+            padding: 12px 16px;
+            border-radius: 4px;
+            outline:none;
+            border:none;
+            color:#fff;
+            font-weight:bold;
+            font-size: 1rem;
+            cursor:pointer;
+        }
+        .onboarding-popup-btn:active {
+            top:2px;
+            opacity:0.9;
+        }
+    </style>
+
+</head>
+<body> 
+    <div class="onboarding-popup">
+        <div class="onboarding-popup-content">
+            <div class="ar-icon-container">
+                <img src="https://upload.wikimedia.org/wikipedia/id/b/b9/Taylor_Swift_-_Anti-Hero.png" /><br/>
+                <div class="ar-icon-img">
+                    <img src="https://cdn1.iconfinder.com/data/icons/electronics-and-devices-22/32/electronics_hand_mobile_phone_smartphone-16-512.png"/>
+                </div>
+            </div>
+            <div>
+                <h3>Welcome to the AR feature!</h3>
+                <p style="margin-top:32px;">Point your camera towards the photo marked by the sticker (Please be mind that the sticker is just a helper sign, so don't forget to release it first, otherwise it won't work). Then click on the Play Buton to start AR!</p>
+                <p><button class="onboarding-popup-btn" style="margin-top:24px">Ok, I understood!</button></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

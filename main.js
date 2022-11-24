@@ -1,78 +1,43 @@
-console.log('Tes');
+document.addEventListener("DOMContentLoaded", function() {
+    const sceneEl = document.querySelector('a-scene');
+    // const arSystem = sceneEl.systems["mindar-image-system"];
 
-// import {loadVideo} from "./libs/loader";
-const THREE = window.MINDAR.IMAGE.THREE;
+    const video = document.getElementById('ar-video');
 
-// Helper function
-const loadVideo = (path) => {
-    return new Promise((resolve, reject) => {
-        const video = document.createElement("video");
-        video.addEventListener('loadeddata', () => {
-            resolve(video);
-            console.log('video resolved');
-        });
-        video.src = path;
-        // reject("reject bro");
+    const playBtn = document.getElementById('ar-play-btn');
+    
+    sceneEl.addEventListener("arReady", (event) => {
+        console.log("ar ready");
     });
-}
 
-// Main function
-document.addEventListener('DOMContentLoaded', () => {
-    let video = null;
-    const init = async() => {
-        video =  await loadVideo('assets/anti-hero.mp4');
-        video.play();
-        video.pause();
-    }
-    const start = async() => {
-        const mindarThree = new window.MINDAR.IMAGE.MindARThree({
-            container: document.body,
-            imageTargetSrc: 'assets/anti-hero.mind',
-            // uiScanning: "#scanning",
-            // uiLoading: "no"
-        });
-        const {renderer, scene, camera} = mindarThree;
-       
-        console.log('video sebelum loaded');
-        const video = await loadVideo('assets/anti-hero.mp4');
-        console.log('video loaded');
+    video.addEventListener('error', () => {
+        console.error(`Error loading: ${videoSrc}`);
+    });
 
-        const texture = new THREE.VideoTexture(video);
- 
-        const geometry = new THREE.PlaneGeometry(1, 1);
-        const material = new THREE.MeshBasicMaterial({map: texture});
-        const plane = new THREE.Mesh(geometry, material);
+    let isClicked = false;
+    sceneEl.addEventListener("targetFound", event => {
+        // arSystem.unpause(); // unpause AR and video
+        console.log("target found");
 
-        const anchor = mindarThree.addAnchor(0);
-        anchor.group.add(plane); // THREE.Group
-        
-        anchor.onTargetFound = () => {
+        playBtn.addEventListener("click", () => {
+            console.log("Clicked");
             video.play();
-            console.log('Target found');
-        }
-        anchor.onTargetLost = () => {
-            video.pause();
-            console.log('Target lost');
-        }
-        video.addEventListener("play", () => {
-            // Duration of the video
-            // video.currentTime = 6;
-            
+            playBtn.setAttribute('visible', false);
+            isClicked = true;
         });
-
-        // Wait until the engine is ready
-        await mindarThree.start();
-
-        renderer.setAnimationLoop(() => {
-            renderer.render(scene, camera);
-        });
-    }
-    start();
-
-    const button = document.createElement("button");
-    button.textContent = "Start";
-    button.addEventListener("click", start);
-
-    document.body.appendChild(button);
+        console.log(isClicked);
+        if (isClicked){
+            video.play();
+        }
+    });
+    // detect target lost
+    sceneEl.addEventListener("targetLost", event => {
+        video.pause();
+        // arSystem.pause(true);
+        console.log("target lost");
+    });
+    
+    sceneEl.addEventListener("arError", (event) => {
+        console.log("ar error");
+    });
 });
-// console.log('end');
