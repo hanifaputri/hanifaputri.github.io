@@ -71,7 +71,7 @@ html, body {
     z-index: 99; /* Sit on top */
     left: 0;
     top: 0;
-    padding-top:20vh;
+    padding-top:10vh;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
@@ -214,7 +214,7 @@ html, body {
 }
 
 .onboarding-popup {
-  display: none;
+  /* display: none; */
   position: fixed;
   z-index:99;
   width:100%;
@@ -225,7 +225,7 @@ html, body {
 }
 .onboarding-popup-content {
   position:relative;
-  top:15vh;
+  top:5vh;
   max-width:500px;
   margin:0 auto;
   height: 100%;
