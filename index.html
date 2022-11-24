@@ -4,13 +4,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="main.css" />    
     
-    <!-- AR Script -->
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image.prod.js"></script>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image-aframe.prod.js"></script>
    
     <script src="main.js"></script>
-
+  
 </head>
 <body> 
     <div id="myModal" class="modal">
@@ -24,9 +23,10 @@
                 <!-- List-->
                 <p>
                     <ol>
-                        <li>Make sure that you already checked the "Allow for Camera" permission. Reload if the prompt is not showing.</li>
+                        <li>Make sure you already checked the "Allow for Camera" permission. Reload the page if the prompt doesn't appear.</li>
                         <li>Point your camera towards the photo marked by the sticker. Please be mind that the sticker is just a helper sign, so don't forget to release it first, otherwise it won't work.</li>
-                        <li>Wait for a second and let the magic happens!</li>
+                        <li>Click the "Play" button</li>
+                        <li>Wait for a second and let the magic happen!</li>
                     </ol>
                 </p>
                 <br/>
@@ -35,6 +35,22 @@
                     Having trouble in activating AR? Tell us what you're struggling with <a href="#">here</a>, we're beyond happy to help!
                 </p>
               </div>
+        </div>
+    </div>
+
+    <div id="onboardingModal" class="onboarding-popup">
+        <div class="onboarding-popup-content">
+            <div class="ar-icon-container">
+                <img src="https://upload.wikimedia.org/wikipedia/id/b/b9/Taylor_Swift_-_Anti-Hero.png" /><br/>
+                <div class="ar-icon-img">
+                    <img src="https://cdn1.iconfinder.com/data/icons/electronics-and-devices-22/32/electronics_hand_mobile_phone_smartphone-16-512.png"/>
+                </div>
+            </div>
+            <div>
+                <h3>Welcome to the AR feature!</h3>
+                <p style="margin-top:32px;">Point your camera towards the photo marked by the sticker (Please be mind that the sticker is just a helper sign, so don't forget to release it first, otherwise it won't work). Then click on the Play Buton to start AR!</p>
+                <p><button id="btnProceed" class="onboarding-popup-btn" style="margin-top:24px">Ok, I understood!</button></p>
+            </div>
         </div>
     </div>
 
@@ -66,7 +82,6 @@
         </a-entity>
     </a-scene>
 
-    <!-- Modal Script Start -->
     <script src="libs/modal.js"></script>
 </body>
 </html>
