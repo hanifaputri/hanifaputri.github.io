@@ -71,7 +71,6 @@ html, body {
     z-index: 99; /* Sit on top */
     left: 0;
     top: 0;
-    padding-top:20vh;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
@@ -81,10 +80,13 @@ html, body {
   
   /* Modal Content */
   .modal-content {
+    position:relative;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
     width: 80%;
     max-width: 600px;
     background-color: #fefefe;
-    margin: auto;
     padding: 20px;
     border: 1px solid #888;
     transition:all .5s ease-in-out;  
@@ -225,12 +227,11 @@ html, body {
 }
 .onboarding-popup-content {
   position:relative;
-  top:15vh;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
   max-width:500px;
-  margin:0 auto;
-  height: 100%;
   padding: 24px;
-  /* flex-wrap: wrap; */
 }
 .onboarding-popup-content > div {
   margin:0 auto;
